@@ -1,0 +1,17 @@
+\section{Background}
+\subsection{Introduction to Bayesian Networks}
+
+Bayesian Networks (BNs) are probabilistic models often used in Machine Learning. BNs model a system using a network of nodes and edges. Each node represents a feature, such as bmi or sex. Directed edges connect the nodes, qualitatively representing conditional relationships. The node from which the edge originates is the parent. The state of the parent node effects the child node, which the edge points to. The conditional probability table attached to each child node details the quantitative effects of the parents. For certain assumptions of independence to hold, BNs must be directed, acyclic graphs (DAGs); the directe edges cannot make cycles within the network.\cite{Russell1995}
+
+\subsection{Structure Learning}
+The structure of a BN is often constructed by a domain expert, leaving just the parameters of the network to be learned from the data. In our research, we are learning both the structure and the parameters of the BN using the data. Structure learning can done using search-and-score techniques, constraint-based methods, or a combination of the two. For our purposes, we will focus on search-and-score structure learning. 
+
+In search-and-score algorithms, many structures are created from the data and scored. The highest score goes to the structure that fits the data best without over-fitting, which comes from having an excessive number of parameters \cite{Vol2012}. Structure scoring metrics include Bayesian Information Criterion (BIC), Likelihood-Equivalence Bayesian Dirichlet (BDe) \cite{Heckerman1995}, and Mutual Information (MI).
+
+BIC was created in 1978 by Gideon Schwarz \cite{Schwarz1978}, and can by calculated through the following equation:
+\begin{equation}
+    BIC(D, x) = LL(D; x) - \frac{1}{2}(\ln n)|\underline{\theta}|
+\end{equation}
+where the DAG along which the factorization is made is represented by \textit{D} and the number of independent parameters is represented by \begin{math}|\underline{\theta}|\end{math}. The BIC scoring metric improves on the log likelihood (LL) measure by introducing a penalizing term for the number of edges in the network.  \cite{Vol2012}.
+
+BDe 

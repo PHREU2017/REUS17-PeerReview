@@ -1,0 +1,124 @@
+\section{Methods}
+
+The data used to create this network was gathered through the Coronary Artery Risk Development in Young Adults (CARDIA) study. The specifics of the study procedures are detailed elsewhere\cite{Friedman1988}. This study followed 5115 subjects from 1985-6 until present. Birmingham, AL; Chicago, IL; Minneapolis, MN; and Oakland, CA served as centers for data collection. Each location recruited participants evenly distributed between the subgroups of gender, race, education level, and age-group (18-25 or 25-30). Data gathered from participants included physical measurements, clinical tests, and an in depth questionnaire about lifestyle and socioeconomic status. This study has served as the backbone for major research in the development of heart disease.
+
+The data we are using comes from years 0 (1985-6), 5 (1990-1), 7 (1992-3), 10 (1995-6), 15 (2000-1), and 20 (2005-6). We only excluded participants if their CAC levels were unobserved in year 20. This puts the total number of participants analyzed for this paper at 5039. 
+
+\begin{table}{}
+\centering
+\begin{tabular}{ |c|c|c| } 
+ \hline
+ Feature & Threshold\\ 
+ \hline
+ bmi & 0, 16, 18.5, 25, 30, 35, 40, 100\\
+ \hline
+ trig & 0, 25, 50, 100, 300, 1000, 3000\\
+ \hline
+ cholesterol & 70, 100, 150, 200, 250, 300, 400\\
+ \hline
+ ldl & 0, 50, 100, 150, 200, 400\\
+ \hline
+ hdl & 10, 30, 50, 70, 100, 120, 200\\
+ \hline
+ glucose & 0, 50, 100, 200, 300, 400\\
+ \hline
+ dbp & 0, 80, 90, 100, 110\\ 
+ \hline
+ sbp & 0, 120, 140, 160, 180\\ 
+ 
+ \hline
+\end{tabular}
+\end{table}
+ % this is from Early Predictions. Subject to change
+ 
+\begin{comment}
+\begin{table}{}
+\centering
+\begin{tabular}{ |c|c|c| } 
+ \hline
+ Feature Name & Type & Threshold\\ 
+ \hline
+ Marital Status & Boolean &    \\
+ \hline
+ Employment Status & Boolean &    \\
+ \hline
+ Home Ownership & Boolean &    \\
+ \hline
+ Health Insurance Status & Boolean &    \\
+ \hline
+ Obesity & Boolean &          \\
+ \hline
+ Difficulty Paying for Basic Necessities & Boolean &   \\
+ \hline
+ Sex & Boolean &     \\
+ \hline
+ Electrocardiogram and Echocardiography & Boolean & \\
+ \hline
+ Coronary calcium & Boolean & \\
+ \hline
+ Age & Ordinal & 18,24,25,30 \\
+ \hline
+ Race & Ordinal & 1,8 \\
+ \hline
+ Education Level & Ordinal & 1,8 \\
+ \hline
+ Blood Pressure & Ordinal & cell6 \\ 
+ \hline
+ Chemistries & Ordinal &   \\ 
+ \hline
+ Anthropometry & Ordinal & 1,500 \\
+ \hline
+ Medical history & Ordinal & 1,5 \\
+ \hline
+ Family history & Ordinal & 1,5\\
+ \hline
+ Physical Activity & Ordinal & 1,10 \\
+ \hline
+ Nutrient intake/dietary history & Ordinal & 1,10 \\
+ \hline
+ Psychosocial parameters & Ordinal & 1,10 \\
+ \hline
+ Pulmonary function & Ordinal & 1,3 \\
+ \hline
+ Carotid intimal medial thickness & Ordinal & 1,3 \\
+ \hline
+ Genetic studies & Ordinal & 1,10  \\
+ 
+ 
+ 
+ 
+ 
+ 
+ \hline
+\end{tabular}
+\end{table}
+
+ 
+We consider only the longitudinal lifestyle and socioeconomic data in our research. Socioeconomic factors included age, sex, race, education level, marital status, employment status, difficulty paying for basic necessities, home ownership, and health insurance status. 
+
+To model how behaviors change over time, we applied the CARDIA data to BN learning algorithms, which used a hill-climbing approach. To score structures we use BIC, Mutual information, and BDe, \cite{Heckerman} because these metrics have shown promising in previous BN research \cite{Yang}.
+
+\end{comment}{}
+% outline below
+\begin{comment}
+
+\begin{itemize}
+    \item Due to the complexity and unpredictability of machine learning, we are currently unable to define any concrete methods that we will be using for this project.  However, throughout this first week of extensive research, we have discovered a few possible  methodologies that have the capability to be implemented. 
+
+\textbf{Dynamic Bayesian}
+       
+\item  In short, a dynamic Bayesian network associates variables to each other over adjoining time spaces.  We could possible use this method to relate different factors of the patients that have the potential to determine whether or not they will have a heart attack or not.
+
+\textbf{Hierarchical Bayesian}
+
+ \item this is a statistical model that involves multiple layers that are used to evaluate the parameters of the posterior distribution using the Bayesian method.  The latent models integrate to create the hierarchical model, and the Bayes' theorem is used to fuse them with the observed data, and constitute for all the uncertainty that is existent.  We could possible use this method to produce an ordered model of the attributes that the patients may or may not have.  This will help us evaluate the probability of the patient having a heart attack or not, while providing us with a margin of error in our prediction.
+ 
+\textbf{Weka -> Netica}
+ 
+ \item Originally, we began learning how to use Weka to pre-process, classify,  cluster, and visualize random data sets.  After our last meeting with Dr. Natarajan we were advised that we will now be using Netica do manipulate our data sets. 
+
+\textbf{Programming Workplace and Language}
+
+\item We will be coding our project in the java programming language, using Eclipse as our compiler. 
+\end{itemize} 
+\end{comment}
