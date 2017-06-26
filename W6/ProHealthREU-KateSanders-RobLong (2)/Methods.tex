@@ -1,0 +1,164 @@
+\section{Methods}
+
+\subsection{Data}
+
+The data used was gathered through the Coronary Artery Risk Development in Young Adults (CARDIA) study. This study followed 5115 subjects from 1985-6 until present. Birmingham, AL; Chicago, IL; Minneapolis, MN; and Oakland, CA served as centers for data collection. Each location recruited participants in a way that ensured an even distribution of sex, race, education level, and age-group (18-25 or 25-30). Data gathered from participants included physical measurements, clinical tests, and an in depth questionnaire about lifestyle and socioeconomic status. The breadth of recorded features and longitudinal nature of this study make is a good data set for studying the development of heart disease. The specifics of the study procedures are detailed elsewhere \cite{Friedman1988}.
+
+The data we analyze comes from years 0 (1985-6), 5 (1990-1), 7 (1992-3), 10 (1995-6), 15 (2000-1), and 20 (2005-6). The features that were analyzed can be viewed in Table~\ref{tab:table1}. Sex, race, and CAC levels are boolean values. Smoker status falls into 3 categories: non-smoker, smoker, and ?. There are also 3 categories for high blood pressure: ?, ?, and ?. The data from all other features are continuous. To make this data discrete, we cut the data into Quintiles, which means that the data was split on the following percentiles based on frequency: 0, 0.2, 0.4, 0.8, and 1.0.
+
+There were two reasons that a person could be excluded from our analysis. 1) If the participant's CAC levels were unobserved in year 20. 2) If one or more of a participant's features were not recorded for any year of the study. Otherwise, missing data was replaced by the mean of that patient's data from every observed year. 
+
+
+\begin{table}{}
+\centering
+\begin{tabular}{ |c|c|c| } 
+ \hline
+ Feature & Divisions\\ 
+ \hline
+ sex & 2\\
+ \hline
+ race & 2\\
+ \hline
+ cac & 2\\
+ \hline
+ hbp & 3\\
+ \hline
+ smoker & 3\\
+ \hline
+ age & Quintiles\\
+ \hline
+ education & Quintiles\\
+ \hline
+ heavy exercise & Quintiles\\
+ \hline
+ moderate exercise & Quintiles\\
+ \hline
+ bmi & Quintiles\\
+ \hline
+ triglicerides & Quintiles\\
+ \hline
+ cholesterol & Quintiles\\
+ \hline
+ ldl & Quintiles\\
+ \hline
+ hdl & Quintiles\\
+ \hline
+ glucose & Quintiles\\
+ \hline
+ dbp & Quintiles\\ 
+ \hline
+ sbp & Quintiles\\ 
+ \hline
+ 
+ 
+ \hline
+\end{tabular}
+\caption{Features analyzed used in creating the Bayesian Networks along with the data divisions.}
+\label{tab:table1}
+
+\end{table}
+ % this is from Early Predictions. Subject to change
+ 
+\subsection{Creating Bayesian Networks}
+
+For Bayesian Network structure learning from the data, we used the bnlearn package in R \cite{Scutari2009, scutari2017package}. The only ordering we used was defining that the sex, race, and age nodes have no parents. 
+
+We used four algorithms for learning the structure of the Bayesian Network. Hill-climbing was the score-based algorithm used. For both of these, we used the optimized implementation to decrease the number of repeated tests within the learning process \cite{Daly}. The score metrics used in the hill-climbing algorithm were AIC \cite{Akaike1974}, BIC \cite{Schwarz1978}, and BDe \cite{Heckerman1995}. 
+ 
+ 
+We also implemented three constraint based algorithms for learning the structure of the Bayesian Network.  The three constraint based algorithms we used were Grow and Shrink(GS), Chow Liu, and Semi-Interleaved HITON-PC. GS and Semi-interleaved Hiton PC algorithms learn the equivalence class of a directed acyclic graph (DAG) from the data set that is presented.\cite{scutari2017package}  They use conditional independence tests to determine the Markov blankets of the attributes, which are utilized to compute the structure of the Bayesian network. \cite{scutari2017package}  Where as, Chow Liu discovers simple graphs structures from a data set using pairwise mutual information coefficients.\cite{scutari2017package}  
+
+For every year data was collected (0, 5, 7, 10, 15, 20), we created a Bayesian Network modeling the features in Table~\ref{tab:table1} using each of the above algorithms. We printed out all of these networks and compared the dependency connections. 
+
+
+\begin{comment}
+\begin{table}{}
+\centering
+\begin{tabular}{ |c|c|c| } 
+ \hline
+ Feature Name & Type & Threshold\\ 
+ \hline
+ Marital Status & Boolean &    \\
+ \hline
+ Employment Status & Boolean &    \\
+ \hline
+ Home Ownership & Boolean &    \\
+ \hline
+ Health Insurance Status & Boolean &    \\
+ \hline
+ Obesity & Boolean &          \\
+ \hline
+ Difficulty Paying for Basic Necessities & Boolean &   \\
+ \hline
+ Sex & Boolean &     \\
+ \hline
+ Electrocardiogram and Echocardiography & Boolean & \\
+ \hline
+ Coronary calcium & Boolean & \\
+ \hline
+ Age & Ordinal & 18,24,25,30 \\
+ \hline
+ Race & Ordinal & 1,8 \\
+ \hline
+ Education Level & Ordinal & 1,8 \\
+ \hline
+ Blood Pressure & Ordinal & cell6 \\ 
+ \hline
+ Chemistries & Ordinal &   \\ 
+ \hline
+ Anthropometry & Ordinal & 1,500 \\
+ \hline
+ Medical history & Ordinal & 1,5 \\
+ \hline
+ Family history & Ordinal & 1,5\\
+ \hline
+ Physical Activity & Ordinal & 1,10 \\
+ \hline
+ Nutrient intake/dietary history & Ordinal & 1,10 \\
+ \hline
+ Psychosocial parameters & Ordinal & 1,10 \\
+ \hline
+ Pulmonary function & Ordinal & 1,3 \\
+ \hline
+ Carotid intimal medial thickness & Ordinal & 1,3 \\
+ \hline
+ Genetic studies & Ordinal & 1,10  \\
+ 
+ 
+ 
+ 
+ 
+ 
+ \hline
+\end{tabular}
+\end{table}
+
+ 
+We consider only the longitudinal lifestyle and socioeconomic data in our research. Socioeconomic factors included age, sex, race, education level, marital status, employment status, difficulty paying for basic necessities, home ownership, and health insurance status. 
+
+To model how behaviors change over time, we applied the CARDIA data to BN learning algorithms, which used a hill-climbing approach. To score structures we use BIC, Mutual information, and BDe, \cite{Heckerman} because these metrics have shown promising in previous BN research \cite{Yang}.
+
+\end{comment}{}
+% outline below
+\begin{comment}
+
+\begin{itemize}
+    \item Due to the complexity and unpredictability of machine learning, we are currently unable to define any concrete methods that we will be using for this project.  However, throughout this first week of extensive research, we have discovered a few possible  methodologies that have the capability to be implemented. 
+
+\textbf{Dynamic Bayesian}
+       
+\item  In short, a dynamic Bayesian network associates variables to each other over adjoining time spaces.  We could possible use this method to relate different factors of the patients that have the potential to determine whether or not they will have a heart attack or not.
+
+\textbf{Hierarchical Bayesian}
+
+ \item this is a statistical model that involves multiple layers that are used to evaluate the parameters of the posterior distribution using the Bayesian method.  The latent models integrate to create the hierarchical model, and the Bayes' theorem is used to fuse them with the observed data, and constitute for all the uncertainty that is existent.  We could possible use this method to produce an ordered model of the attributes that the patients may or may not have.  This will help us evaluate the probability of the patient having a heart attack or not, while providing us with a margin of error in our prediction.
+ 
+\textbf{Weka -> Netica}
+ 
+ \item Originally, we began learning how to use Weka to pre-process, classify,  cluster, and visualize random data sets.  After our last meeting with Dr. Natarajan we were advised that we will now be using Netica do manipulate our data sets. 
+
+\textbf{Programming Workplace and Language}
+
+\item We will be coding our project in the java programming language, using Eclipse as our compiler. 
+\end{itemize} 
+\end{comment}
