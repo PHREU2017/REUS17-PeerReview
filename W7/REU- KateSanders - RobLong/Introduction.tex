@@ -1,0 +1,91 @@
+\section{Introduction}
+
+According to the American Heart Association, an estimated 16.5 million Americans over the age of 20 suffer from Coronary Heart Disease (CHD). Approximately 1 in 7 deaths that occur in the United States are as a result of CHD. The most commonly deadly cardiac event associated with CHD is a Myocardial Infarction (MI), often refered to as a heart attack. Each year, approximately 790,000 MIs occur. That means that, on average, an American has a MI every 40 seconds \cite{Benjamin2017}.
+
+Coronary Artery Calcification (CAC) is predictive of major cardiac events such as myocardial infarction (MI) and death from CHD. Detrano et. all found that doubling CAC levels caused an approximately 25\% increase in the probability of a major cardiac event occurring, a correlation which held true across all races \cite{Detrano2008}. 
+
+
+
+
+To model causes of Coronary Artery Calcification, we use Bayesian Networks.  Using CARDIA data, we constructed multiple Bayesian Networks for each year, displaying the relationships between the given attributes.  We then implemented three different score based algorithms and three structure learning algorithms on our Bayesian Networks, enabling us to make our predictions more accurate.  The score based algorithms we used are Bayesian information criterion (BIC),Akaike information criterion (AIC), and Bayesian Dirichlet equivalence(BDe)  The structure learning algorithms we used are Semi-Interleaved Hiton PC, Chow-Liu, and incremental association.  After implementing all of the algorithms, we constructed twelve more Bayesian networks; for years 15 and 20 we created a union and intersection separately for both the score based and structure learning algorithms, and a union and intersection of all six algorithm together from year 15 and 20.
+
+
+
+\begin{comment}
+
+
+\textbf{ A.) Problem}
+
+	    	a.) Peoples behaviors have a tendency to drastically change over time.
+		
+	    	b.) These short term changes can play a huge role in the patients health status
+		
+	    	c.) Short term changes are not easily observable.
+		
+	    	d.) If a model were to be created displaying these    changes it could help patients make better decisions about their own lives.
+
+
+\textbf{B.) Obstacles}
+	
+		a.) creating a complicated longitudinal model is extremely time consuming.
+		
+		b.) Longitudinal models can sometimes be intractable
+		
+		c.) There is a lot of background research that needs to be done before creating and implementing such a complex idea
+		
+\textbf{C.) Dynamic Bayesian Networks}
+
+		a.)  We used a Dynamic Bayesian Network because it enabled us to represent the dependence between variables and to give a concise specification of the 	joint probability distribution. \cite{Russell1995}
+		
+		b.)  Within the network each node or variable is equipped with a conditional probability table (CPT).  The nodes are then connected by edges that represent direct influence of one node to another.All together, permitting the network to make statistically based 	inferences, in modeling the CARDIA data set. \cite{Russell1995}
+		
+		c.)  Used Bases rule as our guide
+		
+			i.)  P(A|B) = P(B|A)P(A) / P(B)
+			   
+
+
+		
+
+\textbf{D.) Technology Hole}
+	
+		a.)There has been Dynamic Bayesian Networks used to show connections between behavior and disease
+		b.) No model has been produced that specifically represents behavior
+		
+\textbf{E.) Solution}
+	
+		a.) We have created a preliminary Dynamic Bayesian Network that will aid in tracking and modeling human behavior using CARDIA data.
+		
+\textbf{F.) Contributions}
+
+		a.) In this paper, we make thing following contributions:
+		
+		b.) Our research can be used to build a decision support model for hospitals to aid in several tasks including:
+		
+			i.) resource allocation
+			
+			ii.) treatment planning
+			
+			iii.) Prospectively provide physicians with valuable resources required for making informed decisions
+			
+		c.) Producing a more personalized medical approach for hospitals to use when treating their patients.
+		
+		d.)The methods we used to model these behavioral changes can serve as a backbone for further modeling related work.
+
+
+
+Trying to track the behavior of an individual over time is a daunting and time consuming task. Due to the tendency for behavior to drastically change over time.  These short term behavioral alterations play a huge role in the patients health status, but are extremely hard to observe.This poses a huge problem when trying to make accurate representations of behavioral data. Thus, if a model were to be created displaying these changes it could help patients make better decisions about their own lives.\wfour{sp}{field}
+
+There are complications involved in the process of producing a behavioral model as such.  Just as tracking the behavior of an individual was time consuming, so is creating a longitudinal model.  Longitudinal models are sometimes intractable, making it hard to deal with.  Also, there is copious amounts of background research that needs to be done before constructing and implementing such a complex idea.\wfive{sp}{field}
+
+In order to generate an elaborate model as such we used a Bayesian Network.  The Bayesian Network enabled us to represent the dependence between variables and gave a concise specification of the joint probability distribution.\cite{Russell1995}  Within the network each node or variable is equipped with a conditional probability table (CPT). The nodes are then connected by edges that represent direct influence of one node to another.  This connection permits the network to make statistically based inferences, in modeling the CARDIA data set.\cite{Russell1995}  As a guide for implementing this model we used Bayes rule which is: P(A|B) = P(B|A)P(A) / P(B).
+
+Within our Bayesian network, we used the variable elimination.  Variable elimination is a standard algorithm for computing probability of evidence with regard to a given  Bayesian network \cite{Zhang1996}  This to successfully utilize local structure in the form of determinism \cite{Jensen1990} and context–specific independence\cite{Boutilier1996} to execute inference more systematically. Also, it enables us to answer multiple queries at the same time.   
+
+Currently, there are Bayesian Networks that are used to show connections between behavior and disease, but none that specifically represent behavior.  To fix this problem, we have created a preliminary Bayesian Network that will aid in tracking and modeling human behavior using CARDIA data. 
+
+CARDIA or The Coronary Artery Risk Development in Young Adults Study, looks at the growth and determinants of clinical and sub-clinical cardiovascular disease and its risk components.\cite{Reis2014} This data set records 5,115 black and white, males and females, ages 18-30. \cite{Friedman1988}  CARDIA presents the enrollment and examination methods, the mean levels of blood pressure, total plasma cholesterol, height, weight and body mass index, and the prevalence of cigarette smoking by age, sex, race and educational standing. \cite{Friedman1988}
+
+
+In this paper, we make the following contributions: our research can be used to build a decision support model for hospitals to aid in several tasks including; resource allocation, treatment planning, and prospectively provide physicians with valuable resources required for making informed decisions.  Resulting in a  more personalized medical approach for hospitals to use when treating their patients.  Also, the methods we used to model these behavioral changes can serve as a backbone for further modeling related work.
+\end{comment}

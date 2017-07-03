@@ -1,0 +1,41 @@
+
+\section{Background}
+\subsection{Introduction to Bayesian Networks}
+
+Bayesian Networks (BNs) are probabilistic models often used in Machine Learning. BNs can be used to model real-world data through a system of nodes and edges. Each node represents a feature, such as cholesterol levels or age. Directed edges connect parent nodes to child nodes, qualitatively representing conditional relationships. Each node can have multiple parents and children. In order to make certain assumptions of independence, BNs must be directed, acyclic graphs (DAGs). This means that the direct edges cannot make cycles within the network.\cite{Russell1995} 
+
+The conditional probability table (CPT) attached to each child node details the quantitative effect of the parents. CPTs are useful for looking up the probability of a feature taking a certain value based on observed features. 
+
+\subsection{Structure Learning}
+The structure of a BN is often constructed by a domain expert, leaving just the parameters of the network to be learned from the data. In our research, we are learning both the structure and the parameters of the BN using the data. Structure learning can done using search-and-score techniques, constraint-based methods, or a combination of the two. \cite{Vol2012}  
+
+For our purposes, we will focus on search-and-score structure learning. In search-and-score algorithms, many structures are created from the data and scored. The network with the best score is returned as the optimal model for the data.
+
+In this study, we use a Greedy Local Search algorithm called Hill-Climbing (HC). This algorithm starts with an edgeless network. One at a time, a new edge is created and the resulting network is scored. If the score improves, the new edge is kept. This continues until the score no longer improves with new edge additions. At this point, the network is considered to be at the top of a hill.
+
+There are three primary drawback of HC algorithms. One is the tendency to get stuck at a local maximum rather than continuing on to the global maximum, the truly optimal network. Another drawback is getting lost in a plateau, where no direction causes a significantly better score. Ridges can also hinder progress; the searcher zig-zags over the ridge while only making slight progress towards the top of the hill. These problems can be minimized by using random restarts throughout the search process to better explore the space \cite{Russell1995}.
+
+Structure scoring metrics for HC include Log Likelihood (LL), Bayesian Information Criterion (BIC), Akaike Information Criterion (AIC), and Likelihood-Equivalence Bayesian Dirichlet (BDe). Each of these are described in detail below.
+
+ Log Likelihood, is the simplest scoring metric; the top score goes to the structure that fits the data best. The sum is as follows:
+ \begin{equation}
+    LL(B | D) = \sum_{i=1}^{n}\sum_{j=1}^{q_i}\sum_{k=1}^{r_i}N_{ijk}\log(\frac{N_{ijk}}{N_{ij}})
+\end{equation}
+ where \textit{n} is number of features, $q_i$ is the total possible configurations of the parents of a particular feature, and $r_i$ is the number of states for a particular feature. $N_{ijk}$ represents the total number of times that a feature takes it's $k^{th}$ value and the the feature's parents are in their $j^{th}$ configuration within the given data.
+ 
+ 
+ Using LL alone can lead to an excessive number of parameters. This is known as overfitting. An overfitted model is very specific to the data it is trained on and does not generalize well to other data sets. AIC and BIC improve on LL by adding a penalizing term for network complexity \cite{Vol2012}.
+
+AIC was developed by Hirotugu Akaike \cite{Akaike1974} in the early 1970s. The score can be calculated using the following equation:
+\begin{equation}
+    AIC(B | D) = LL(B | D) - |B|
+\end{equation}
+where the DAG along which the factorization is made is represented by \textit{B} and the data is represented by \textit{D}. The penalizing term is \begin{math}|B|\end{math}, which represents the network complexity in terms of the number of parameters in \textit{B}.
+
+BIC was created in 1978 by Gideon Schwarz \cite{Schwarz1978} as an alteration on AIC. It can by calculated as:
+\begin{equation}
+    BIC(B | D) = LL(B | D) - \frac{1}{2}\log(N)|B|
+\end{equation}
+  The sample size of \textit{B} is represented by \textit{N}. The penalizing factor for BIC is greater than that of AIC.
+
+Unlike BIC and AIC, BDe uses a Bayesian approach to scoring. This method was deveoped by Heckerman, Geiger, and Chickering in 1995 \cite{Heckerman1995}.
